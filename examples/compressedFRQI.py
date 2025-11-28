@@ -156,16 +156,16 @@ def count_circuit_gates(circuit):
     cnot_count = 0
     ry_count = 0
     h_count = 0
-    
+
     for instruction in circuit.data:
-        name = instruction[0].name
+        name = instruction.operation.name
         if 'cx' in name or 'cnot' in name:
             cnot_count += 1
         elif 'ry' in name:
             ry_count += 1
         elif name == 'h':
             h_count += 1
-    
+
     return cnot_count, ry_count, h_count
 
 def main():
@@ -240,7 +240,8 @@ Example usage:
         f.write(f"//     * Compression setting            : {args.compression}\n")
         f.write(f"//       - CNOT compression ratio [%]   : {cnot_compression:.1f}\n")
         f.write(f"//       - Ry compression ratio [%]     : {ry_compression:.1f}\n\n")
-        f.write(circuit.qasm())
+        from qiskit.qasm2 import dumps
+        f.write(dumps(circuit))
     
     # Print circuit statistics
     print(f"\n   Circuit statistics:")
