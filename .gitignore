@@ -13,3 +13,17 @@ release/
 # Documentation
 doc/doxygen/html/
 doc/doxygen/latex/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+.pytest_cache/
+
+# Test outputs
+test_output.*
+**/test_output.*
